@@ -7,13 +7,12 @@ import React, {
 
 const ThemeContext = createContext();
 
-export function ThemeProvider({ children }) {
+export default function ThemeProvider({ children }) {
   const [theme, setTheme] = useState("light");
 
   // Checks system theme before loading page to assign appropriate theme
   useLayoutEffect(() => {
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    console.log(darkThemeMq);
     if (darkThemeMq.matches) {
       setTheme("dark");
     } else {
@@ -53,12 +52,12 @@ export function ThemeProvider({ children }) {
   );
 }
 
-export default function useTheme() {
+export function useTheme() {
   const context = useContext(ThemeContext);
 
-  if (!context) {
-    throw new Error("useTheme must be used within the ThemeProvider");
-  }
+  // if (!context) {
+  //   throw new Error("useTheme must be used within the ThemeProvider");
+  // }
 
   return context;
 }

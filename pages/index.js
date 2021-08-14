@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Sun from "./components/Sun.js";
-import Moon from "./components/Moon.js";
-import useTheme from "./context/ThemeContext";
+import Sun from "../components/Sun.js";
+import Moon from "../components/Moon.js";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Home() {
   const { theme, colors } = useTheme();
