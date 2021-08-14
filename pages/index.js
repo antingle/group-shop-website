@@ -133,7 +133,8 @@ export default function Home() {
         </section>
       </main>
       <style jsx global>{`
-        body {
+        body,
+        html {
           background: ${colors.background};
         }
       `}</style>

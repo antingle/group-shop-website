@@ -171,11 +171,13 @@
     min-width: unset;
     margin-bottom: 0;
     width: 80%;
+    font-size: 12pt;
   }
 
   .button {
     width: 80%;
     margin-bottom: 0;
+    font-size: 12pt;
   }
 
   .themeRow {
@@ -183,6 +185,12 @@
     margin: auto;
     padding: 0;
     padding-top: 1em;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .email,
+  .button {
+    width: 90%;
   }
 }
 
