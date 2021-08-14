@@ -1,9 +1,17 @@
+/* Global Variables */
+:root {
+  --color-transition: 1s;
+  --color-primary: #2ddb74;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, Avenir, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  width: 100%;
+  height: 100%;
 }
 
 a {
@@ -13,4 +21,55 @@ a {
 
 * {
   box-sizing: border-box;
+  transition: color var(--color-transition),
+    background-color var(--color-transition);
+}
+
+main {
+  width: 100%;
+  height: 100%;
+}
+
+/* Keep animations from clipping! */
+div {
+  overflow: visible !important;
+}
+
+.light,
+.dark {
+  animation: fadeUp 1s ease-in-out;
+}
+
+.shoplight,
+.shopdark {
+  animation: fadeSide 1s ease-in-out;
+}
+
+.themeIcon {
+  cursor: pointer;
+  transition: height 500ms;
+}
+
+.themeIcon:hover {
+  opacity: 1 !important;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSide {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+  }
 }
