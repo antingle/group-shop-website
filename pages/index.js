@@ -108,6 +108,7 @@ export default function Home() {
                   type="submit"
                   className={styles.button}
                   style={{ color: colors.foreground }}
+                  disabled={loading}
                 >
                   {!loading ? (
                     "Get notified!"
