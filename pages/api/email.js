@@ -1,20 +1,25 @@
-var request = require("request");
+const fetch = require("node-fetch");
 
+// keep track of number of people since deploy
 let people = 1;
 
 export default function handler(req, res) {
   res.status(200).send();
-  var options = {
+  let options = {
     method: "POST",
-    url: `https://api.sendfox.com/contacts?email=${req.body.email}&lists[]=274839`,
     headers: {
       Authorization: `Bearer ${process.env.TOKEN}`,
     },
   };
 
-  request(options, function (error, response) {
-    if (error) console.log(error);
-    console.log(people, JSON.parse(response.body).email);
-    people++;
-  });
+  fetch(
+    `https://api.sendfox.com/contacts?email=${req.body.email}&lists[]=${process.env.LIST}`,
+    options
+  )
+    .then((res) => res.json())
+    .then((json) => {
+      console.log(people, json.email);
+      people++;
+    })
+    .catch((error) => console.log("ERROR:", error));
 }
