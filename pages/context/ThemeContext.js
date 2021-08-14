@@ -53,7 +53,7 @@ export function ThemeProvider({ children }) {
   );
 }
 
-export function useTheme() {
+export default function useTheme() {
   const context = useContext(ThemeContext);
 
   if (!context) {
