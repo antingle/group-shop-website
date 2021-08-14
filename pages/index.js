@@ -12,25 +12,21 @@ export default function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.email.value);
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("EMAIL", event.target.email.value);
+    myHeaders.append("Content-Type", "application/json");
 
     var requestOptions = {
       method: "POST",
-      mode: "no-cors",
+      mode: "same-origin",
       headers: myHeaders,
-      body: urlencoded,
-      redirect: "follow",
+      body: JSON.stringify({
+        email: event.target.email.value,
+      }),
     };
 
-    fetch(
-      "https://groupshop.us5.list-manage.com/subscribe/post?u=cee7cbb34cb37181a6f89c404&amp;id=6b00adb528",
-      requestOptions
-    ).then(() => setCompleted(true));
+    fetch("/api/email", requestOptions)
+      .then(() => setCompleted(true))
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -88,15 +84,7 @@ export default function Home() {
                 : "Thank you for your interest! We will be in touch!"}
             </h2>
             {!completed && (
-              <form
-                className={styles.flexRow}
-                onSubmit={handleSubmit}
-                action="https://groupshop.us5.list-manage.com/subscribe/post?u=cee7cbb34cb37181a6f89c404&amp;id=6b00adb528"
-                target="_blank"
-                method="post"
-                id="mc-embedded-subscribe-form"
-                name="mc-embedded-subscribe-form"
-              >
+              <form className={styles.flexRow} onSubmit={handleSubmit}>
                 <input
                   type="email"
                   name="email"
