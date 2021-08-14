@@ -8,10 +8,13 @@ import { useTheme } from "../context/ThemeContext";
 
 export default function Home() {
   const { theme, colors } = useTheme();
+  const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -25,7 +28,11 @@ export default function Home() {
     };
 
     fetch("/api/email", requestOptions)
-      .then(() => setCompleted(true))
+      .then((res) => res.text())
+      .then(() => {
+        setLoading(false);
+        setCompleted(true);
+      })
       .catch((e) => console.log(e));
   };
 
@@ -102,7 +109,14 @@ export default function Home() {
                   className={styles.button}
                   style={{ color: colors.foreground }}
                 >
-                  Get notified!
+                  {!loading ? (
+                    "Get notified!"
+                  ) : (
+                    <div
+                      className={styles.loader}
+                      style={{ borderTop: `2px solid ${colors.foreground}` }}
+                    ></div>
+                  )}
                 </button>
               </form>
             )}
