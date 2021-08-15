@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -10,6 +10,15 @@ export default function Home() {
   const { theme, colors } = useTheme();
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src = "/sib.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
