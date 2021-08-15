@@ -87,7 +87,7 @@ export default function Home() {
               style={{ color: colors.opposite }}
             >
               {!completed
-                ? "Get notified as soon as it's out!"
+                ? "Subscribe to get updates about our upcoming release!"
                 : "Thank you for your interest! We will be in touch!"}
             </h2>
             {!completed && (
@@ -111,7 +111,7 @@ export default function Home() {
                   disabled={loading}
                 >
                   {!loading ? (
-                    "Get notified!"
+                    "Subscribe!"
                   ) : (
                     <div
                       className={styles.loader}
