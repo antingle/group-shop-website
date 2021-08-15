@@ -55,7 +55,7 @@ export default function Home() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
-    window.sib.email_id = event.target.email.value;
+    window.sendinblue.identify(event.target.email.value);
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
