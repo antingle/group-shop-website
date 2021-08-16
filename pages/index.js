@@ -18,8 +18,6 @@ export default function Home() {
         equeue: [],
         client_key: "g9ud0g01fg7x7vlzq0m2p9kz",
       };
-      /* OPTIONAL: email for identify request*/
-      // window.sib.email_id = 'example@domain.com';
       window.sendinblue = {};
       for (
         var j = ["track", "identify", "trackLink", "page"], i = 0;
@@ -55,7 +53,6 @@ export default function Home() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
-    window.sendinblue.identify(event.target.email.value);
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -74,6 +71,7 @@ export default function Home() {
       .then(() => {
         setLoading(false);
         setCompleted(true);
+        window.sendinblue.identify(event.target.email.value);
       })
       .catch((e) => console.log(e));
   };
